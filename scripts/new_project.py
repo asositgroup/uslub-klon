@@ -1,6 +1,6 @@
 """new_project.py <video.mp4> <loyiha_papka> [nom] — yangi video uchun loyiha papkasini ochadi.
 
-Yaratadi: src/manba.mp4 (APFS'da klon/hardlink), audio/, assets/, tahlil/, out/, project.json shabloni,
+Yaratadi: src/manba.mp4 (APFS'da klon/hardlink), audio/voice.wav + clean16k.wav (asl ovoz), assets/, tahlil/, out/, project.json shabloni,
 assets/base.mp4 (1080x1920 60fps CRF16, retushsiz zaxira). Keyingi qadamlar SKILL.md "Ish tartibi" da.
 """
 import json
@@ -22,6 +22,12 @@ if not dst.exists():
         shutil.copy2(src, dst)
 dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(dst)],
                            capture_output=True, text=True).stdout.strip())
+voice = proj / "audio" / "voice.wav"          # ovoz — asl yozuvdan (tashqi tozalash servisi ishlatilmaydi)
+if not voice.exists():
+    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(dst), "-vn", "-af", "highpass=f=70",
+                    "-ac", "2", "-ar", "48000", "-c:a", "pcm_s16le", str(voice)], check=True)
+    subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(voice), "-ac", "1", "-ar", "16000",
+                    str(proj / "audio" / "clean16k.wav")], check=True)
 base = proj / "assets" / "base.mp4"
 if not base.exists():
     subprocess.run(["ffmpeg", "-nostdin", "-v", "error", "-y", "-i", str(dst), "-an", "-vf",
@@ -32,7 +38,7 @@ if not cfg.exists():
     json.dump({
         "name": name,
         "title": "",
-        "media": {"base": "assets/base_retush.mp4", "voice": "audio/manba_auphonic.wav", "avatar": "assets/avatar.jpg",
+        "media": {"base": "assets/base.mp4", "voice": "audio/voice.wav", "avatar": "assets/avatar.jpg",
                   "source": "src/manba.mp4"},
         "dur_video": round(dur, 3),
         "dur": round(dur + 1.4, 2),
@@ -44,4 +50,4 @@ if not cfg.exists():
         "styles": [],                # tanlangan uslublar (library/INDEX.md)
         "version": "v1"
     }, open(cfg, "w"), ensure_ascii=False, indent=1)
-print(f"loyiha: {proj}\n  davomiylik {dur:.3f} s\n  keyingi qadam: ~/.claude/skills/uslub-klon/scripts/auphonic_clean.sh {dst} {proj}/audio")
+print(f"loyiha: {proj}\n  davomiylik {dur:.3f} s\n  ovoz: audio/voice.wav, audio/clean16k.wav\n  keyingi qadam: tr.py (SKILL.md B1)")

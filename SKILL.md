@@ -1,6 +1,6 @@
 ---
 name: uslub-klon
-description: O'zining uslublar kutubxonasiga ega mustaqil reel montaj skilli — foydalanuvchi namuna video yoki havola tashlasa, uning uslubini HAMMA jihatdan o'rganadi (har element o'lchanadi — shrift, rang, % joylashuv, kirish/chiqish; montaj ritmi, rang/grade, kamera, ovoz, tuzilma) va library/ ga yangi uslub sifatida saqlaydi (o'rgangan uslublarini yig'ib boradi, bir muallifning hamma videolarini birlashtiradi); keyin foydalanuvchi o'z videosini tashlasa — shu o'rganilgan uslubda 9:16 premium, silliq reel qilib montaj qiladi (Auphonic tozalash, aynan so'zlar bilan so'zma-so'z subtitr, yuz zonalari, HyperFrames, −14 LUFS) va natijani referens bilan raqamda solishtiradi. "/uslub-klon", "uslub klon", "shu videoni o'rgan", "bu uslubni o'rganib ol", "kutubxonaga qo'sh", "shunaqa qilib ber", "shu uslubda montaj qil", "<muallif> uslubida qil", "o'rgangan uslublaringni ko'rsat" so'rovlarida ishlat.
+description: O'zining uslublar kutubxonasiga ega mustaqil reel montaj skilli — foydalanuvchi namuna video yoki havola tashlasa, uning uslubini HAMMA jihatdan o'rganadi (har element o'lchanadi — shrift, rang, % joylashuv, kirish/chiqish; montaj ritmi, rang/grade, kamera, ovoz, tuzilma) va library/ ga yangi uslub sifatida saqlaydi (o'rgangan uslublarini yig'ib boradi, bir muallifning hamma videolarini birlashtiradi); keyin foydalanuvchi o'z videosini tashlasa — shu o'rganilgan uslubda 9:16 premium, silliq reel qilib montaj qiladi (aynan so'zlar bilan so'zma-so'z subtitr, yuz zonalari, HyperFrames, −14 LUFS) va natijani referens bilan raqamda solishtiradi. "/uslub-klon", "uslub klon", "shu videoni o'rgan", "bu uslubni o'rganib ol", "kutubxonaga qo'sh", "shunaqa qilib ber", "shu uslubda montaj qil", "<muallif> uslubida qil", "o'rgangan uslublaringni ko'rsat" so'rovlarida ishlat.
 ---
 
 # uslub-klon — video uslubini o'rganish va shu uslubda montaj
@@ -71,9 +71,7 @@ $PY $SK/learn.py "<havola1>" "<havola2>" ... --slug <uslub-nomi> --author "<Mual
 ### B1. Loyiha + tozalash + matn
 ```bash
 PRJ=~/Desktop/AI-Videos/<Mijoz yoki Mavzu>/<NN_nom>
-$PY $SK/new_project.py /yo'l/video.mp4 $PRJ <NN_nom>                  # src/manba.mp4, assets/base.mp4 (1080x1920 60fps), project.json
-$SK/auphonic_clean.sh $PRJ/src/manba.mp4 $PRJ/audio                   # qoida 2 -> audio/manba_auphonic.wav
-ffmpeg -i $PRJ/audio/manba_auphonic.wav -ac 1 -ar 16000 $PRJ/audio/clean16k.wav
+$PY $SK/new_project.py /yo'l/video.mp4 $PRJ <NN_nom>    # src/manba.mp4, assets/base.mp4 (1080x1920 60fps), audio/voice.wav + clean16k.wav (asl ovoz, qoida 2), project.json
 for L in uz kk tr; do HF_DEV=cpu HF_CT=int8 $PY $SK/tr.py $PRJ/audio/clean16k.wav $PRJ/audio/tr_$L.json $L; done
 # audio/segments_final.json [{t0,t1,text}] — mutaxassis AYNAN aytgani (3 whisper'ni solishtirib, adabiy imlo); shubhali joy:
 $PY $SK/align.py score $PRJ/audio/clean16k.wav <t0> <t1> "variant 1" "variant 2"
@@ -129,10 +127,10 @@ style_compare jadvali, OLINMAGAN narsalar, ❓ qolganlar. Yangi saboq bo'lsa —
 SKILL.md · README.md
 references/  rules.md · smooth-motion.md · lessons.md
 scripts/     learn.py (o'rganish) · ref_analyze.py · events.py · kit.py (komponentlar) · common.py · build.py · finish.sh
-             new_project.py · auphonic_clean.sh · auphonic_align.py · tr.py · align.py · cuts.py · face_zones.py · retouch_src.py
+             new_project.py · tr.py · align.py · cuts.py · face_zones.py · retouch_src.py
              grade_match.py · style_compare.py · smooth_check.py · qc.py · textw.py · sheets.sh · music_pick.py · broll_search.py · broll_prep.py
 assets/      fonts/ (OFL) · gsap.min.js · sfx/ (yumshoq; sparkle/chime yo'q) · models/ (YuNet yuz)
 library/     INDEX.md · <uslub>/{STYLE.md, style.json, style.py, metrics.json, refs.json, keyframes/, fonts/, img/} · _mualliflar/ · _src/ (videolar — git'ga kirmaydi)
 ```
 Talablar: ffmpeg ≥5.1, node + `npx hyperframes@0.8.171`, `yt-dlp`, Python 3.9+ venv (numpy scipy pillow opencv faster-whisper torch torchaudio≤2.8),
-Auphonic kaliti `~/.auphonic.env`, Pexels kaliti — `keys/pexels.env` da bor (o'zingizniki bo'lsa `~/.pexels.env`, u ustun). Ixtiyoriy: `~/video-use` (timeline_view tasmalari).
+Pexels kaliti — `keys/pexels.env` da bor (o'zingizniki bo'lsa `~/.pexels.env`, u ustun). Ixtiyoriy: `~/video-use` (timeline_view tasmalari).

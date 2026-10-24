@@ -31,5 +31,5 @@
   qora/oq nuqta va to'yinganlik to'liq. Natija varag'ini ko'z bilan ko'r. Bir nechta referens — vergul bilan.
 
 ## Audio
-- Auphonic: `auphonic_clean.sh` jingl joyini o'zi topadi va sinxronni tekshiradi; bepul tarif 2 soat/oy.
+- Ovoz asl yozuvdan (rules 2). Lokal shovqin filtri kerak bo'lsa ehtiyot: afftdn/RNNoise undosh tovushlarni yeydi — avval 5 s bo'lakda sina, solishtir.
 - Yakun: `finish.sh` 2-pass lineal loudnorm −14 LUFS, TP −1.5 + telefon nusxasi (<30 MB).

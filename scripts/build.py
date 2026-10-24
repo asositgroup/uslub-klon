@@ -2,7 +2,7 @@
 
 Uslub = library/<uslub>/style.py (build() -> dict: faces, css, body, js, sweeps, sfx, ...), kit.py komponentlaridan quriladi.
 Loyiha papkasi (DIR) da: project.json, words json (MMS alignment), media (project.json → media):
-  base  — 1080x1920 asosiy video (retush qilingan), voice — toza ovoz (Auphonic), avatar — Instagram avatar (ixtiyoriy).
+  base  — 1080x1920 asosiy video (retush qilingan), voice — asl yozuvdan ajratilgan ovoz (audio/voice.wav), avatar — Instagram avatar (ixtiyoriy).
 Skill'dan olinadi: shriftlar, GSAP, SFX; uslub papkasidan: fonts/, img/ (bo'lsa).
 """
 import argparse

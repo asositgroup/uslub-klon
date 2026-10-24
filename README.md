@@ -7,7 +7,7 @@ videolarini bitta uslubga birlashtiradi. To'liq mustaqil (boshqa montaj skillari
 **O'rganish:** yt-dlp → tahlil (tuzilma, temp, montaj ritmi, kesim-nutq munosabati, har kadr rangi, kamera, ovoz, SFX) → grafik element
 hodisalari (har biriga kadrma-kadr strip) → `library/<uslub>/` (STYLE.md, style.json tokenlari, style.py qurilishi, metrics.json).
 
-**Montaj:** Auphonic shovqin tozalash → whisper + MMS forced alignment (aynan so'zlar, so'zma-so'z vaqt) → kesim va yuz zonalari →
+**Montaj:** asl ovoz (tashqi tozalash servisisiz) → whisper + MMS forced alignment (aynan so'zlar, so'zma-so'z vaqt) → kesim va yuz zonalari →
 referensga rang moslash → reja (tasdiq) → HyperFrames + GSAP (overshootsiz, silliq) → 60 fps render → −14 LUFS → referens bilan raqamli solishtirish.
 
 ## O'rnatish
@@ -17,7 +17,7 @@ git clone https://github.com/asositgroup/uslub-klon.git ~/.claude/skills/uslub-k
 Claude Code'ni qayta oching — `/uslub-klon` paydo bo'ladi. Yangilash: `cd ~/.claude/skills/uslub-klon && git pull`.
 Talablar: ffmpeg ≥5.1, Node.js (`npx hyperframes`), yt-dlp, Python 3.9+ venv:
 `pip install numpy scipy pillow opencv-python-headless faster-whisper torch "torchaudio<=2.8"`.
-Kalitlar: `~/.auphonic.env` (`AUPHONIC_API_KEY=...`), Pexels kaliti repoda bor (`keys/pexels.env`; o'zingizniki bo'lsa `~/.pexels.env`). Ixtiyoriy: [video-use](https://github.com/browser-use/video-use) → `~/video-use`.
+Pexels kaliti repoda bor (`keys/pexels.env`; o'zingizniki bo'lsa `~/.pexels.env`). Ixtiyoriy: [video-use](https://github.com/browser-use/video-use) → `~/video-use`.
 
 ## Ishlatish (Claude Code'da)
 - "Shu videoni o'rgan: <havola>" — yangi uslub kutubxonaga qo'shiladi

@@ -2,8 +2,9 @@
 
 1. **Reja → tasdiq → montaj.** Transkript + uslub pasporti + beat-ma-beat reja jadvalini ko'rsatmaguncha va foydalanuvchi
    "boshla" demaguncha qurma. Ishni o'z tashabbusing bilan kengaytirma. Uslubni foydalanuvchi o'zi tanlayman desa — ro'yxatni ko'rsat va KUT.
-2. **Avval shovqin tozalash.** Har yuborilgan videoning ovozi montajdan OLDIN Auphonic orqali tozalanadi (`scripts/auphonic_clean.sh`,
-   kalit `~/.auphonic.env`). Auphonic kredit sarflaydi — kalit yo'q bo'lsa yoki foydalanuvchi o'chirsa, asl ovoz bilan davom et va ayt.
+2. **Ovoz — asl yozuvdan, Auphonic ISHLATILMAYDI** (foydalanuvchi talabi, 2026-10-24) va boshqa tashqi/pullik tozalash servislari ham.
+   `new_project.py` ovozni o'zi ajratadi (faqat 70 Hz highpass), balandlik `finish.sh` da (−14 LUFS). Kuchli lokal shovqin filtrlari
+   (afftdn/RNNoise) sukut bo'yicha yo'q — nutqni yeydi; ovoz juda shovqinli bo'lsa foydalanuvchiga ayt va so'ra.
 3. **Subtitr = mutaxassisning AYNAN so'zlari** (adabiy imlo, uning so'z shakllari, qisqartirilmaydi). Har so'z vaqti MMS forced alignment
    (`scripts/align.py`). Bo'lak birinchi so'zida chiqadi, oxirgi so'zi tugaguncha turadi. Subtitr hamma narsa ustida (z-index 70).
 4. **Hamma narsa silliq** (`smooth-motion.md`): kirish ≥0.45–0.9 s `expo.out` + blur, chiqish ≥0.5 s `power2.inOut`, overshoot/elastic/bounce

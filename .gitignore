@@ -1,0 +1,11 @@
+# referens videolar/audio/rasmlar repoga kirmaydi (mualliflik huquqi) — tahlil hisobotlari (.md/.json) qoladi
+library/_src/**
+!library/_src/
+!library/_src/.gitkeep
+!library/_src/**/
+!library/_src/**/*.md
+!library/_src/**/*.json
+__pycache__/
+*.pyc
+.DS_Store
+.env

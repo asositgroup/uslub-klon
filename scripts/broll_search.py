@@ -1,7 +1,7 @@
 """B-roll nomzodlari (Pexels video) → <loyiha>/tahlil/broll/<slot>/cand.json + sheet.jpg (KO'R, keyin broll_prep.py).
 
 python broll_search.py <loyiha> <slot> "so'rov 1" ["so'rov 2" ...]
-Kalit (birinchisi topilgani): $PEXELS_API_KEY | ~/.pexels.env | ~/Desktop/AI-Videos/AbuDev/remotion-teaser/.env  (PEXELS_API_KEY=...)
+Kalit (birinchisi topilgani): $PEXELS_API_KEY | ~/.pexels.env | skill ichidagi keys/pexels.env (repoda bor)
 Pexels License — tijoriy bepul, atributsiya shart emas. Odamlar qoidasi (rules.md 4) — varaqda ko'z bilan tekshir.
 """
 import io, json, os, re, sys, urllib.parse, urllib.request
@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw
 def key():
     if os.environ.get("PEXELS_API_KEY"):
         return os.environ["PEXELS_API_KEY"]
-    for p in ("~/.pexels.env", "~/Desktop/AI-Videos/AbuDev/remotion-teaser/.env"):
+    for p in ("~/.pexels.env", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "keys", "pexels.env")):
         p = os.path.expanduser(p)
         if os.path.exists(p):
             m = re.search(r"PEXELS_API_KEY=\"?([^\"\r\n]+)", open(p).read())

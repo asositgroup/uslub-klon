@@ -135,4 +135,4 @@ assets/      fonts/ (OFL) · gsap.min.js · sfx/ (yumshoq; sparkle/chime yo'q) �
 library/     INDEX.md · <uslub>/{STYLE.md, style.json, style.py, metrics.json, refs.json, keyframes/, fonts/, img/} · _mualliflar/ · _src/ (videolar — git'ga kirmaydi)
 ```
 Talablar: ffmpeg ≥5.1, node + `npx hyperframes@0.8.171`, `yt-dlp`, Python 3.9+ venv (numpy scipy pillow opencv faster-whisper torch torchaudio≤2.8),
-Auphonic kaliti `~/.auphonic.env`, Pexels kaliti (`PEXELS_API_KEY` yoki `~/.pexels.env`). Ixtiyoriy: `~/video-use` (timeline_view tasmalari).
+Auphonic kaliti `~/.auphonic.env`, Pexels kaliti — `keys/pexels.env` da bor (o'zingizniki bo'lsa `~/.pexels.env`, u ustun). Ixtiyoriy: `~/video-use` (timeline_view tasmalari).
